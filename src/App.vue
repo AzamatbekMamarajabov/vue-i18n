@@ -1,17 +1,26 @@
 <template>
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
+    <HelloI18n name="HelloI18n" />
   </div>
 </template>
 
 <script>
-import HelloWorld from "./components/HelloWorld.vue";
+import HelloI18n from "./components/HelloI18n.vue";
 
 export default {
   name: "App",
   components: {
-    HelloWorld
+    HelloI18n
+  },
+  created() {
+    const locale = localStorage.getItem("locale");
+
+    if (locale) {
+      this.$i18n.locale = locale;
+    } else if (navigator.language) {
+      this.$i18n.locale = navigator.language;
+    }
   }
 };
 </script>
